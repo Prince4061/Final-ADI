@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Data - Aditya Enterprises</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="main-header page-header">
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-icon btn-back">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <h1 class="page-title">Manage Data</h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- List View: Show Saved Agencies -->
+            <section id="agencyListView" class="list-section active-view">
+                <div class="section-header" style="margin-bottom: 1.5rem;">
+                    <h2 class="section-title">Saved Agencies</h2>
+                    <button id="showAddFormBtn" class="btn btn-primary"
+                        style="padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </div>
+
+                <div id="savedAgenciesContainer" class="agencies-list">
+                    <!-- Cards will be populated here via JS -->
+                    <div class="empty-state text-muted" style="text-align: center; padding: 2rem 0;">
+                        No agencies added yet.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form View: Add New Agency (Hidden by default) -->
+            <section id="addAgencyView" class="form-section-container hidden-view">
+                <form id="agencyForm" class="data-form glass-panel">
+
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h2 class="section-title" style="margin: 0;">Add New Agency</h2>
+                        <button type="button" id="cancelAddBtn" class="btn btn-icon btn-glass"
+                            style="width: 30px; height: 30px;">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Agency Section -->
+                    <section class="form-section">
+                        <div class="input-group">
+                            <label for="agencyName">Agency Name</label>
+                            <input type="text" id="agencyName" name="agencyName" placeholder="e.g. Amul, Britannia"
+                                required>
+                        </div>
+                        <div class="input-group">
+                            <label for="contactNumber">Contact Number</label>
+                            <input type="tel" id="contactNumber" name="contactNumber"
+                                placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+                    </section>
+
+                    <hr class="section-divider">
+
+                    <!-- Products Section -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <label style="font-weight: 600; color: var(--text-muted);">Products</label>
+                            <span class="product-count" id="productCount">1 item</span>
+                        </div>
+
+                        <div id="productsContainer" class="products-list">
+                            <!-- Initial Product Row -->
+                            <div class="product-row" data-index="0">
+                                <div class="input-group">
+                                    <input type="text" class="product-name" placeholder="Product Name (e.g. Milk)"
+                                        required>
+                                </div>
+                                <div class="input-group unit-group">
+                                    <input type="text" class="product-unit" placeholder="Unit (e.g. Liter)" required>
+                                </div>
+                                <button type="button" class="btn btn-icon btn-remove" style="visibility: hidden;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="button" id="addProductBtn" class="btn btn-secondary btn-full">
+                            <i class="fa-solid fa-plus"></i> Add Another Product
+                        </button>
+                    </section>
+
+                    <!-- Action Container -->
+                    <section class="action-container" style="padding: 1.5rem 0 0 0; margin-top: 1rem;">
+                        <button type="submit" class="btn btn-primary btn-huge pulse-glow">
+                            <i class="fa-solid fa-save"></i> Save Agency
+                        </button>
+                    </section>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js?v=3"></script>
+    <!-- Custom JS -->
+    <script src="manage-data.js?v=3"></script>
+</body>
+
+</html>

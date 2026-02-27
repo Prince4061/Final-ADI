@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Order - Aditya Enterprises</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <!-- Main Order Screen -->
+        <div id="mainOrderScreen" class="active-view" style="display: flex; flex-direction: column; min-height: 100%;">
+            <!-- Header -->
+            <header class="main-header page-header">
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-icon btn-back">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                    <h1 class="page-title">New Order</h1>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <form id="orderForm" class="data-form">
+
+                    <!-- Shop Details -->
+                    <section class="form-section glass-panel" style="padding: 1.5rem;">
+                        <h2 class="section-title">Shop Details</h2>
+                        <div class="input-group">
+                            <label for="shopName">Shop Name</label>
+                            <input type="text" id="shopName" name="shopName" placeholder="e.g. Anand Super Bazaar"
+                                required>
+                        </div>
+                    </section>
+
+                    <!-- Cart / Order Items -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Order Items</h2>
+                            <span class="product-count" id="cartCount">0 items</span>
+                        </div>
+
+                        <div id="cartContainer" class="agencies-list">
+                            <!-- Empty State -->
+                            <div id="emptyCartMessage" class="glass-panel"
+                                style="text-align: center; padding: 2rem 1rem; color: var(--text-muted);">
+                                <i class="fa-solid fa-cart-shopping"
+                                    style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                                <p>No items added yet. Click below to add.</p>
+                            </div>
+                            <!-- Cart items will be listed here -->
+                        </div>
+
+                        <button type="button" id="openAgencyModalBtn" class="btn btn-secondary btn-full"
+                            style="margin-top: 1rem;">
+                            <i class="fa-solid fa-building"></i> + Add from Agency
+                        </button>
+                    </section>
+
+                    <!-- Action Container -->
+                    <section class="action-container" style="padding: 1rem 0; margin-top: auto;">
+                        <button type="submit" id="placeOrderBtn" class="btn btn-primary btn-huge pulse-glow" disabled
+                            style="opacity: 0.5;">
+                            <i class="fa-solid fa-paper-plane"></i> Place Order
+                        </button>
+                    </section>
+                </form>
+            </main>
+        </div>
+
+        <!-- FULL-SCREEN MODAL: Agency Selection -->
+        <div id="agencySelectionModal" class="full-screen-modal hidden-view">
+            <header class="main-header page-header">
+                <div class="header-actions">
+                    <button type="button" class="btn btn-icon btn-back close-modal" data-target="agencySelectionModal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <h1 class="page-title">Select Agency</h1>
+                </div>
+            </header>
+            <main class="main-content" style="padding: 1.5rem;">
+                <div id="modalAgenciesContainer" class="agencies-list">
+                    <!-- Agencies will be dynamically inserted here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- FULL-SCREEN MODAL: Product Selection (for a specific agency) -->
+        <div id="productSelectionModal" class="full-screen-modal hidden-view">
+            <header class="main-header page-header">
+                <div class="header-actions">
+                    <button type="button" class="btn btn-icon btn-back" id="backToAgenciesBtn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <h1 class="page-title" id="selectedAgencyTitle">Products</h1>
+                    <button type="button" class="btn btn-primary"
+                        style="padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem; margin-left: auto;"
+                        id="doneSelectingProductsBtn">
+                        Done
+                    </button>
+                </div>
+            </header>
+            <main class="main-content" style="padding: 1.5rem;">
+                <!-- Search bar for products (optional UI enhancement) -->
+                <div class="input-group" style="margin-bottom: 1.5rem;">
+                    <div class="search-wrap" style="position: relative;">
+                        <i class="fa-solid fa-search"
+                            style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                        <input type="text" id="productSearch" placeholder="Search products..."
+                            style="padding-left: 2.5rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div id="modalProductsContainer" class="products-list">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js?v=3"></script>
+    <!-- Custom JS -->
+    <script src="new-order.js?v=3"></script>
+</body>
+
+</html>
